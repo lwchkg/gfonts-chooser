@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (hover:hover) {
+@media (hover: hover) {
   .header-button:not(:disabled) {
-    @apply hover:bg-stone-100 dark:hover:bg-stone-800
+    @apply hover:bg-stone-100 dark:hover:bg-stone-800;
   }
 }
 
@@ -32,9 +32,10 @@
 }
 
 select {
-  @apply appearance-none border-t-0 border-l-0 border-r-0 border-b border-stone-400 bg-white dark:bg-stone-900 pl-2 pr-3 text-center dark:border-stone-500;
+  @apply appearance-none border-b border-l-0 border-r-0 border-t-0 border-stone-400 bg-white pl-2 pr-3 text-center dark:border-stone-500 dark:bg-stone-900;
 }
 
-select:active, select:focus-visible {
-  @apply outline-none border-t-0 border-l-0 border-r-0 border-b;
+select:active,
+select:focus-visible {
+  @apply border-b border-l-0 border-r-0 border-t-0 outline-none;
 }
