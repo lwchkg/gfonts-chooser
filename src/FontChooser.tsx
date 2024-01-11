@@ -35,10 +35,23 @@ function FontChooserInner({
             {},
           ),
       );
-    fonts.forEach((item) => {
-      document.fonts.add(item);
-    });
+
+    let cancelled = false;
+
+    (async () => {
+      for (const [index, font] of fonts.entries()) {
+        if (cancelled) break;
+
+        document.fonts.add(font);
+        // Execute code in queue every 10 iterations to avoid blocking the UI.
+        if ((index + 1) % 10 == 0) {
+          await new Promise((resolve) => setTimeout(resolve));
+        }
+      }
+    })();
+
     return () => {
+      cancelled = true;
       fonts.forEach((item) => {
         document.fonts.delete(item);
       });
