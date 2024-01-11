@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 @media (hover:hover) {
-  .header-button {
-    @apply rounded-full hover:bg-stone-100 dark:hover:bg-stone-800
+  .header-button:not(:disabled) {
+    @apply hover:bg-stone-100 dark:hover:bg-stone-800
   }
+}
+
+.header-button {
+  @apply rounded-full;
+}
+
+.header-button:disabled {
+  @apply opacity-30;
 }
 
 *::-webkit-scrollbar-track {
