@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { FontRecord, fontFamilyFilter, urlStringToCSS } from "utils/FontData";
+import { type FontSizeType, twProseFontSize } from "utils/FontSize";
+
 import { SampleText } from "./SampleText";
-import { FontRecord, fontFamilyFilter, urlStringToCSS } from "./utils/FontData";
-import { type FontSizeType, twProseFontSize } from "./utils/FontSize";
 
 const defaultAxes = {
   ital: 0,
