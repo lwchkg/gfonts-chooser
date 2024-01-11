@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm build
+    - run: npm run build
 
   Lint:
 
@@ -41,5 +41,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm lint
-    - run: npm prettier-lint
+    - run: npm run lint
+    - run: npm run prettier-lint
