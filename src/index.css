@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  @apply bg-white dark:bg-stone-900;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  @apply bg-white dark:bg-stone-900;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  @apply bg-black dark:bg-stone-400;
+}
+
+select {
+  @apply appearance-none border-t-0 border-l-0 border-r-0 border-b border-stone-400 bg-white dark:bg-stone-900 pl-2 pr-3 text-center dark:border-stone-500;
+}
+
+select:active, select:focus-visible {
+  @apply outline-none border-t-0 border-l-0 border-r-0 border-b;
+}
