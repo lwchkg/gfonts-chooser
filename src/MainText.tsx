@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { SampleText } from "./SampleText";
 import { FontRecord, fontFamilyFilter, urlStringToCSS } from "./utils/FontData";
+import { type FontSizeType, twProseFontSize } from "./utils/FontSize";
 
 const defaultAxes = {
   ital: 0,
@@ -63,7 +64,13 @@ const steps: Record<string, number> = {
   SPAC: 0.1,
 };
 
-export function MainText({ font }: { font: FontRecord | undefined }) {
+export function MainText({
+  font,
+  fontSize,
+}: {
+  font: FontRecord | undefined;
+  fontSize: FontSizeType;
+}) {
   const [axes, setAxes] = useState<Record<string, number>>(defaultAxes);
 
   useEffect(() => {
@@ -95,10 +102,14 @@ export function MainText({ font }: { font: FontRecord | undefined }) {
     };
   }, [font]);
 
+  const articleClassName = `prose ${twProseFontSize[fontSize]} prose-stone max-w-none dark:prose-invert`;
+
   if (!font) {
     return (
-      <main className="prose prose-stone col-span-9 max-w-none overflow-x-auto dark:prose-invert">
-        <SampleText />
+      <main className="col-span-9 overflow-x-auto">
+        <article className={articleClassName}>
+          <SampleText />
+        </article>
       </main>
     );
   }
@@ -136,7 +147,7 @@ export function MainText({ font }: { font: FontRecord | undefined }) {
       ) : null}
 
       <article
-        className="prose prose-stone max-w-none dark:prose-invert"
+        className={articleClassName}
         style={{
           fontFamily: `${fontFamilyFilter(font.family)}, sans-serif`,
           ...(font.axes
