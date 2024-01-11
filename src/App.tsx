@@ -1,12 +1,14 @@
 import { useState } from "react";
 
+import { DarkModeToggle } from "components/DarkModeToggle";
+import { FontChooser } from "components/FontChooser";
+import { FontSizeSelector } from "components/FontSizeSelector";
+import { MainText } from "components/MainText";
+
+import { FontRecord } from "utils/FontData";
+import type { FontSizeType } from "utils/FontSize";
+
 import "./App.css";
-import { FontChooser } from "./FontChooser";
-import { MainText } from "./MainText";
-import { DarkModeToggle } from "./components/DarkModeToggle";
-import { FontSizeSelector } from "./components/FontSizeSelector";
-import { FontRecord } from "./utils/FontData";
-import type { FontSizeType } from "./utils/FontSize";
 
 function App() {
   const [font, setFont] = useState<FontRecord | undefined>(undefined);

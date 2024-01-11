@@ -1,4 +1,4 @@
-import { type FontSizeType, fontSizes } from "../utils/FontSize";
+import { type FontSizeType, fontSizes } from "utils/FontSize";
 
 export function FontSizeSelector({
   fontSize,

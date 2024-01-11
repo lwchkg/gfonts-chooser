@@ -5,8 +5,8 @@ import {
   fontFamilyFilter,
   getFontData,
   urlStringToCSS,
-} from "./utils/FontData";
-import { reactPromise } from "./utils/reactPromise";
+} from "utils/FontData";
+import { reactPromise } from "utils/reactPromise";
 
 function getMenuFontFamily(family: string): string {
   return "Menu-" + fontFamilyFilter(family);
