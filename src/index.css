@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (hover:hover) {
+  .header-button {
+    @apply rounded-full hover:bg-stone-100 dark:hover:bg-stone-800
+  }
+}
+
 *::-webkit-scrollbar-track {
   border-radius: 10px;
   @apply bg-white dark:bg-stone-900;

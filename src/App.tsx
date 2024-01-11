@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import { FontChooser } from "./FontChooser";
 import { MainText } from "./MainText";
+import { DarkModeToggle } from "./components/DarkModeToggle";
 import { FontRecord } from "./utils/FontData";
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
 
   return (
     <>
-      <header className="col-span-12 row-span-1">
+      <header className="relative col-span-12 row-span-1">
         <h1 className="text-4xl">Font Tester</h1>
+        <DarkModeToggle />
       </header>
       <aside className="col-span-3 overflow-x-auto">
         <FontChooser setFont={setFont} />
