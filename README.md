@@ -1,39 +1,31 @@
-# React + TypeScript + Vite
+# Google Fonts Chooser
 
-This template provides a minimal setup to get React working in Vite with HMR and
-some ESLint rules.
+While [Google Fonts](https://fonts.google.com) is a great resource for fonts,
+its website appears not the best place to browse its collection. That is why
+_Google Fonts Chooser_ exists.
 
-Currently, two official plugins are available:
+## Using the app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
-  uses [SWC](https://swc.rs/) for Fast Refresh
+1. Click to select a font in the left sidebar. The font is now used in the main
+   text.
 
-## Expanding the ESLint configuration
+2. If the font is
+   a [Variable Font](https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts),
+   sliders are available for you to test drive the Variable Font features.
 
-If you are developing a production application, we recommend updating the
-configuration to enable type aware lint rules:
+3. Switch between light and dark modes, and change the font size to see how the
+   font looks in different environments. (_Note: DO NOT skip this step._)
 
-- Configure the top-level `parserOptions` property like this:
+4. You can filter the font list by selecting ‘Variable Fonts only’ and/or
+   choosing one of the five categories.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+## About fonts that comes without bold and italic styles
 
-- Replace `plugin:@typescript-eslint/recommended` to
-  `plugin:@typescript-eslint/recommended-type-checked` or
-  `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install
-  [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and
-  add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends`
-  list
+Not every font has bold, italic or bold italic styles. Faux-bold and
+faux-italics are disabled in this app to make the absence of font styles more
+visible.
+
+The weight of the text you set is for normal text. For bold text, the app
+increase the weight by 300, or set the weight to the maximum if adding 300 is
+not possible. In the latter case, the bold text becomes less distinguishable, or
+not distinguishable at all.

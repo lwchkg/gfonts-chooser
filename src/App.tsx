@@ -10,6 +10,20 @@ import type { FontSizeType } from "utils/FontSize";
 
 import "./App.css";
 
+function HeaderText({ font }: { font: FontRecord | undefined }) {
+  return (
+    <h1 className="text-4xl">
+      Google Font Chooser
+      {font && (
+        <>
+          {" "}
+          &ndash; <b>{font.family}</b>
+        </>
+      )}
+    </h1>
+  );
+}
+
 function App() {
   const [font, setFont] = useState<FontRecord | undefined>(undefined);
 
@@ -18,7 +32,7 @@ function App() {
   return (
     <>
       <header className="relative col-span-12 row-span-1">
-        <h1 className="text-4xl">Font Tester</h1>
+        <HeaderText font={font} />
         <DarkModeToggle />
         <FontSizeSelector fontSize={fontSize} setFontSize={setFontSize} />
       </header>

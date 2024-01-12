@@ -74,10 +74,11 @@ export function MainText({
 }) {
   const [axes, setAxes] = useState<Record<string, number>>(defaultAxes);
 
+  const wghtAxis = font?.axes?.find((item) => item.tag === "wght");
+
   useEffect(() => {
     if (!font) return;
 
-    const hasWghtAxis = font.axes?.find((item) => item.tag === "wght");
     const fontFaces = Object.keys(font.files).map(
       (key) =>
         new FontFace(
@@ -85,11 +86,9 @@ export function MainText({
           urlStringToCSS(font.files[key]),
           {
             style: key.endsWith("italic") ? "italic" : "normal",
-            ...(!hasWghtAxis
-              ? {
-                  weight: key.match(/^\d+/)?.at(0) || "normal",
-                }
-              : {}),
+            weight: wghtAxis
+              ? [wghtAxis.start, wghtAxis.end].join(" ")
+              : key.match(/^\d+/)?.at(0) || "normal",
           },
         ),
     );
@@ -101,24 +100,26 @@ export function MainText({
         document.fonts.delete(item);
       });
     };
-  }, [font]);
+  }, [font, wghtAxis]);
 
-  const articleClassName = `prose ${twProseFontSize[fontSize]} prose-stone max-w-none dark:prose-invert`;
+  const articleClassName = `prose ${twProseFontSize[fontSize]} max-w-none dark:prose-invert`;
 
   if (!font) {
     return (
       <main className="col-span-9 overflow-x-auto">
         <article className={articleClassName}>
-          <SampleText />
+          <SampleText boldWeight={700} />
         </article>
       </main>
     );
   }
 
   function onAxisChange(tag: string, value: number) {
-    console.log(tag, value);
     setAxes({ ...axes, [tag]: value });
   }
+
+  const weight = wghtAxis ? axes["wght"] : 400;
+  const boldWeight = Math.min(weight + 300, 900);
 
   return (
     <main className="col-span-9 overflow-x-auto">
@@ -151,9 +152,11 @@ export function MainText({
         className={articleClassName}
         style={{
           fontFamily: `${fontFamilyFilter(font.family)}, sans-serif`,
+          fontWeight: weight,
           ...(font.axes
             ? {
                 fontVariationSettings: font.axes
+                  .filter((item) => item.tag !== "wght")
                   .map((axis) =>
                     Object.prototype.hasOwnProperty.call(axes, axis.tag)
                       ? `"${axis.tag}" ${axes[axis.tag]}`
@@ -165,7 +168,7 @@ export function MainText({
             : {}),
         }}
       >
-        <SampleText />
+        <SampleText boldWeight={boldWeight} />
       </article>
     </main>
   );
