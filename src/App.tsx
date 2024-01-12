@@ -10,6 +10,13 @@ import type { FontSizeType } from "utils/FontSize";
 
 import "./App.css";
 
+function GetGoogleFontUrl(family: string): string {
+  if (family.startsWith("Material")) {
+    return "https://fonts.google.com/icons";
+  }
+  return "https://fonts.google.com/specimen/" + encodeURIComponent(family);
+}
+
 function HeaderText({ font }: { font: FontRecord | undefined }) {
   return (
     <h1 className="text-4xl">
@@ -17,7 +24,15 @@ function HeaderText({ font }: { font: FontRecord | undefined }) {
       {font && (
         <>
           {" "}
-          &ndash; <b>{font.family}</b>
+          &ndash;{" "}
+          <a
+            href={GetGoogleFontUrl(font.family)}
+            target="_blank"
+            className="border-b-2 hover:border-b-4"
+          >
+            <b>{font.family}</b>
+            <span className="material-symbols-outlined">{"\ue157"}</span>
+          </a>
         </>
       )}
     </h1>

@@ -3,9 +3,12 @@ export function SampleText({ boldWeight }: { boldWeight: number }) {
     <>
       <h1 style={{ fontWeight: boldWeight }}>About Google Fonts Chooser</h1>
       <p>
-        While <a href="https://fonts.google.com">Google Fonts</a> has a great
-        collection of fonts, its website is not ideal for browsing its
-        collection. That is why <em>Google Fonts Chooser</em> exists.
+        While{" "}
+        <a href="https://fonts.google.com" target="_blank">
+          Google Fonts
+        </a>{" "}
+        has a great collection of fonts, its website is not ideal for browsing
+        its collection. That is why <em>Google Fonts Chooser</em> exists.
       </p>
       <h2 style={{ fontWeight: boldWeight }}>Using the app</h2>
       <ol>
@@ -15,7 +18,10 @@ export function SampleText({ boldWeight }: { boldWeight: number }) {
         </li>
         <li>
           If the font is a{" "}
-          <a href="https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts">
+          <a
+            href="https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts"
+            target="_blank"
+          >
             variable font
           </a>
           , sliders are available for you to test drive the Variable Font
