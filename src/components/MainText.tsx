@@ -1,3 +1,4 @@
+import Slider from "@mui/joy/Slider";
 import { useEffect, useState } from "react";
 
 import { FontRecord, fontFamilyFilter, urlStringToCSS } from "utils/FontData";
@@ -118,35 +119,103 @@ export function MainText({
     setAxes({ ...axes, [tag]: value });
   }
 
-  const weight = wghtAxis ? axes["wght"] : 400;
+  const weight = axes["wght"];
+  let weights: number[] = [];
+
+  if (!wghtAxis) {
+    const weightsSet = new Set<number>();
+    font.variants.forEach((variant) => {
+      variant = variant.replace("italic", "");
+      if (["", "regular"].includes(variant)) {
+        weightsSet.add(400);
+      } else {
+        weightsSet.add(parseInt(variant));
+      }
+    });
+    weights = [...weightsSet.keys()];
+    weights.sort((a, b) => a - b);
+    console.log(weights);
+  }
   const boldWeight = Math.min(weight + 300, 900);
 
   return (
     <main className="col-span-9 overflow-x-auto">
       {font.axes ? (
         <div className="mb-8">
-          <h1 className="mb-4 text-xl font-bold">Variable Axes</h1>
+          <h1 className="mb-3 text-xl font-bold">Variable Axes</h1>
           {font.axes.map((axis) => (
             <p className="mb-2" key={axis.tag}>
-              <label>
-                {axis.tag}:{" "}
-                <input
-                  className="align-text-bottom"
-                  type="range"
+              <label className="flex h-12 flex-row">
+                <span className="mr-5 mt-[.75em] inline-block w-14 text-right">
+                  {axis.tag}:
+                </span>
+                <Slider
+                  slotProps={{
+                    // Styles are set to override JoyUI defaults.
+                    root: {
+                      style: { width: "15em" },
+                    },
+                    markLabel: {
+                      className: "opacity-70",
+                      style: { color: "unset" },
+                    },
+                  }}
+                  name={axis.tag}
                   min={axis.start}
                   max={axis.end}
+                  defaultValue={axes[axis.tag]}
+                  getAriaValueText={toString}
                   step={steps[axis.tag] || 1}
-                  value={axes[axis.tag]}
-                  onChange={(e) => {
-                    onAxisChange(axis.tag, parseFloat(e.target.value));
+                  marks={[
+                    { label: axis.start, value: axis.start },
+                    { label: axis.end, value: axis.end },
+                  ]}
+                  onChange={(_event, value) => {
+                    onAxisChange(axis.tag, value as number);
                   }}
                 />{" "}
-                {axes[axis.tag]}
+                <span className="ml-5 mt-[.75em]">{axes[axis.tag]}</span>
               </label>
             </p>
           ))}
         </div>
       ) : null}
+
+      {!wghtAxis && weights.length > 1 && (
+        <>
+          <h1 className="mb-3 text-xl font-bold">Font weight</h1>
+          <p className="mb-2" key="weight">
+            <label className="flex h-12 flex-row">
+              <span className="mr-5 mt-[.75em] inline-block w-14 text-right">
+                weight:
+              </span>
+              <Slider
+                slotProps={{
+                  // Styles are set to override JoyUI defaults.
+                  root: {
+                    style: { width: "15em" },
+                  },
+                  markLabel: {
+                    className: "opacity-70",
+                    style: { color: "unset" },
+                  },
+                }}
+                name="weight"
+                min={weights[0]}
+                max={weights[weights.length - 1]}
+                defaultValue={weight}
+                getAriaValueText={toString}
+                step={null}
+                marks={weights.map((w) => ({ label: w, value: w }))}
+                onChange={(_event, value) => {
+                  onAxisChange("wght", value as number);
+                }}
+              />
+              <span className="ml-5 mt-[.75em]">{axes.wght}</span>
+            </label>
+          </p>
+        </>
+      )}
 
       <article
         className={articleClassName}
