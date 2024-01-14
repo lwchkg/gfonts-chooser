@@ -107,11 +107,9 @@ export function MainText({
 
   if (!font) {
     return (
-      <main className="col-span-9 overflow-x-auto">
-        <article className={articleClassName}>
-          <SampleText boldWeight={700} />
-        </article>
-      </main>
+      <article className={articleClassName}>
+        <SampleText boldWeight={700} />
+      </article>
     );
   }
 
@@ -139,7 +137,7 @@ export function MainText({
   const boldWeight = Math.min(weight + 300, 900);
 
   return (
-    <main className="col-span-9 overflow-x-auto">
+    <>
       {font.axes ? (
         <div className="mb-8">
           <h1 className="mb-3 text-xl font-bold">Variable Axes</h1>
@@ -239,6 +237,6 @@ export function MainText({
       >
         <SampleText boldWeight={boldWeight} />
       </article>
-    </main>
+    </>
   );
 }

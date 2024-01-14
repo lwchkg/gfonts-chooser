@@ -4,7 +4,7 @@
 
 @media (hover: hover) {
   .header-button:not(:disabled) {
-    @apply hover:bg-stone-100 dark:hover:bg-stone-800;
+    @apply hover:bg-stone-100 dark:hover:bg-stone-700;
   }
 }
 
