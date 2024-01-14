@@ -47,9 +47,9 @@ function App() {
   return (
     <>
       <header className="relative col-span-12 row-span-1">
-        <HeaderText font={font} />
         <DarkModeToggle />
         <FontSizeSelector fontSize={fontSize} setFontSize={setFontSize} />
+        <HeaderText font={font} />
       </header>
       <aside className="col-span-3 overflow-x-auto">
         <FontChooser setFont={setFont} />
