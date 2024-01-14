@@ -63,7 +63,7 @@ export function DarkModeToggle() {
   return (
     <button
       onClick={handleClick}
-      className="material-symbols-outlined header-button absolute right-0 top-0 h-10 w-10"
+      className="material-symbols-outlined header-button float-right ml-1 h-10 w-10"
       aria-label="Dark mode toggle"
     >
       {isLight ? "\ue51c" : "\ue518"}

@@ -21,7 +21,7 @@ export function FontSizeSelector({
     <>
       <button
         onClick={increaseFontSize}
-        className="material-symbols-outlined header-button absolute right-14 top-0 h-10 w-10"
+        className="material-symbols-outlined header-button float-right ml-1 h-10 w-10"
         disabled={fontSize === fontSizes[fontSizes.length - 1]}
         aria-label="Increase font size"
       >
@@ -30,7 +30,7 @@ export function FontSizeSelector({
 
       <button
         onClick={decreaseFontSize}
-        className="material-symbols-outlined header-button absolute right-28 top-0 h-10 w-10"
+        className="material-symbols-outlined header-button float-right ml-1 h-10 w-10"
         disabled={fontSize === fontSizes[0]}
         aria-label="Decrease font size"
       >
